@@ -1,6 +1,8 @@
 // import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import styles from "./Habit.module.scss";
+import HabitHoldProgress from "./HabitHoldProgress";
+import { Power1, TimelineMax } from "gsap/TweenMax";
 
 class Habit extends PureComponent {
   constructor(props) {
@@ -11,6 +13,7 @@ class Habit extends PureComponent {
       holdTime: 0,
       thresholdReached: false
     };
+    this.tl = new TimelineMax();
   }
 
   static defaultProps = {
@@ -41,20 +44,48 @@ class Habit extends PureComponent {
     if (this.state.thresholdReached) {
       return;
     }
+    this.startHoldAnimation();
     requestAnimationFrame(this.timer);
   };
 
   notPressingDown = e => {
     console.log("cancelling");
+    this.tl.pause();
     cancelAnimationFrame(this.state.timerId);
     this.setState({
       counter: 0
     });
   };
 
+  startHoldAnimation() {
+    this.tl.add("holdProgress", 0);
+    this.tl.to(
+      ".progress__value",
+      1,
+      {
+        strokeDashoffset: "0",
+        ease: Power1.easeOut,
+        onComplete: () => {
+          console.log("callback direct");
+        }
+      },
+      "holdProgress"
+    );
+  }
+
+  // componentDidMount() {
+
+  // }
+
+  componentWillUnmount() {
+    this.tl.kill();
+    this.tl = null;
+  }
+
   render() {
     return (
       <div className="Habit">
+        <HabitHoldProgress />
         <div
           className={styles.item}
           onMouseDown={this.pressingDown}
