@@ -27,9 +27,9 @@ class HoldableActionButton extends PureComponent {
     secondaryColor: "#582E27",
     pressHoldDurationInSeconds: 0.75,
     titleSlot: <span>Default Title</span>,
+    incompleteSlot: <span>Incomplete</span>,
     markedSlot: <span>Just Completed</span>,
-    completeSlot: <span>Completed</span>,
-    incompleteSlot: <span>Incomplete</span>
+    completeSlot: <span>Completed</span>
   };
 
   // TODO memoize or use mobx computed
@@ -76,8 +76,6 @@ class HoldableActionButton extends PureComponent {
   };
 
   setupAnimation() {
-    // console.log(this.progressRef);
-    // console.log(this.progressRef.current);
     const progressValueNode = this.progressRef.current.valueRef.current;
     this.tl.add("progress", 0);
     this.tl.to(
@@ -159,17 +157,11 @@ class HoldableActionButton extends PureComponent {
   getContentFragment() {
     switch (this.getStatus()) {
       case "marked":
-        return <div className={styles.markedSlot}>{this.props.markedSlot}</div>;
+        return this.props.markedSlot;
       case "complete":
-        return (
-          <div className={styles.completeSlot}>{this.props.completeSlot}</div>
-        );
+        return this.props.completeSlot;
       default:
-        return (
-          <div className={styles.incompleteSlot}>
-            {this.props.incompleteSlot}
-          </div>
-        );
+        return this.props.incompleteSlot;
     }
   }
 
