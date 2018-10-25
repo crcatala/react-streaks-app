@@ -149,7 +149,6 @@ class Habit extends PureComponent {
           onMouseLeave={this.notPressingDown}
           onTouchStart={this.pressingDown}
           onTouchEnd={this.notPressingDown}
-          tabIndex="0"
         >
           <HabitIconContent
             size={this.props.size}
