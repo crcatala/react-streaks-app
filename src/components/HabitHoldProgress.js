@@ -1,7 +1,7 @@
 import React from "react";
 import "./HabitHoldProgress.scss";
 
-const HabitHoldProgress = ({ size = 100 }) => {
+const HabitHoldProgress = ({ size = 100, strokeWidth = 8 }) => {
   return (
     <div className="HabitHoldProgress">
       <svg
@@ -15,14 +15,14 @@ const HabitHoldProgress = ({ size = 100 }) => {
           cx="60"
           cy="60"
           r="54"
-          strokeWidth="12"
+          strokeWidth={strokeWidth}
         />
         <circle
           className="progress__value"
           cx="60"
           cy="60"
           r="54"
-          strokeWidth="12"
+          strokeWidth={strokeWidth}
           strokeDasharray="339.292"
           strokeDashoffset="339.292"
         />

@@ -2,7 +2,6 @@
 
 .itemContainer {
   position: relative;
-  cursor: pointer;
 }
 
 .item {
@@ -13,7 +12,6 @@
   width: 200px;
   height: 200px;
   border-radius: 100%;
-  cursor: pointer;
 
   &--completed {
     background-color: $color-text;

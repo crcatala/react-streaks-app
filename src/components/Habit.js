@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import styles from "./Habit.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
+import HabitIconContent from "./HabitIconContent";
 import { Power1, TimelineMax } from "gsap/TweenMax";
 import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 
@@ -88,28 +89,6 @@ class Habit extends PureComponent {
     this.tl.pause();
   }
 
-  // startAnimationForUnmarked() {
-  //   this.tl.add("unmarkedProgress", 0);
-  //   this.tl.to(
-  //     ".progress__value",
-  //     this.props.pressHoldDurationInSeconds,
-  //     {
-  //       strokeDashoffset: "0",
-  //       ease: Power1.easeOut,
-  //       onComplete: () => {
-  //         console.log("callback direct");
-  //         this.setState({
-  //           thresholdReached: true
-  //         });
-  //       }
-  //     },
-  //     "unmarkedProgress"
-  //   );
-  // }
-
-  // componentDidMount() {
-
-  // }
   itemStyles() {
     return {
       width: this.props.size,
@@ -158,18 +137,11 @@ class Habit extends PureComponent {
           onTouchEnd={this.notPressingDown}
           tabIndex="0"
         >
-          <div className={styles.item} style={this.itemStyles()}>
-            {this.state.thresholdReached ? (
-              <Checkmark
-                className={styles.checkmark}
-                style={this.labelStyles()}
-              />
-            ) : (
-              <div className={styles.label} style={this.iconStyles()}>
-                {this.props.name[0].toUpperCase()}
-              </div>
-            )}
-          </div>
+          <HabitIconContent
+            size={this.props.size}
+            marked={this.state.thresholdReached}
+            name={this.props.name}
+          />
           <div className={styles.progressContainer}>
             <HabitHoldProgress size={this.props.size} />
           </div>
@@ -177,7 +149,6 @@ class Habit extends PureComponent {
         <div className={styles.name}>
           {this.props.name}
           {this.state.thresholdReached ? "Done" : ""}
-          {/* {this.state.thresholdReached ? <Checkmark /> : ""} */}
         </div>
         <div>isHolding: {`${this.state.isHolding}`}</div>
       </div>
