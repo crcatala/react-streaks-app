@@ -4,14 +4,14 @@ import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 
 export default class HabitIconContent extends PureComponent {
   static defaultProps = {
+    status: "incomplete", // 'incomplete', 'marked' (checkmark, intermediate), 'complete' (final)
     name: "",
-    size: 100,
-    marked: false
+    size: 100
   };
 
   classes() {
-    console.log(this);
-    return `${styles.item} ${this.props.marked && styles["item--marked"]}`;
+    return `${styles.item} ${this.props.status !== "incomplete" &&
+      styles["item--complete"]}`;
   }
 
   itemStyles() {
@@ -46,16 +46,27 @@ export default class HabitIconContent extends PureComponent {
       : "";
   }
 
-  render() {
-    return (
-      <div className={this.classes()} style={this.itemStyles()}>
-        {this.props.marked ? (
+  getContent() {
+    switch (this.props.status) {
+      case "marked":
+        return (
           <Checkmark className={styles.checkmark} style={this.iconStyles()} />
-        ) : (
+        );
+      // case 'complete':
+      //   return
+      default:
+        return (
           <div className={styles.label} style={this.textStyles()}>
             {this.abbreviation()}
           </div>
-        )}
+        );
+    }
+  }
+
+  render() {
+    return (
+      <div className={this.classes()} style={this.itemStyles()}>
+        {this.getContent()}
       </div>
     );
   }

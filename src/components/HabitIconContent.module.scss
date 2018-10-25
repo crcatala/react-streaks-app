@@ -13,14 +13,16 @@
   height: 200px;
   border-radius: 100%;
 
-  &--marked {
+  &--complete {
     background-color: $color-text;
+
+    .label {
+      color: $color-black;
+    }
 
     .checkmark {
       fill: $color-black;
     }
-
-    // color: $color-black;
   }
 }
 

@@ -16,6 +16,7 @@ class Habit extends PureComponent {
       holdTime: 0,
       marked: false,
       isHolding: false,
+      isJustCompleted: false,
       thresholdReached: false
     };
     this.tl = new TimelineMax();
@@ -79,14 +80,25 @@ class Habit extends PureComponent {
         ease: Power1.easeOut,
         onComplete: () => {
           console.log("callback direct");
-          this.setState({
-            thresholdReached: true
-          });
+          this.setState({ thresholdReached: true, isJustCompleted: true });
+          setTimeout(() => {
+            this.setState({ isJustCompleted: false });
+          }, 1000);
         }
       },
       "markedProgress"
     );
     this.tl.pause();
+  }
+
+  getStatus() {
+    if (this.state.thresholdReached && this.state.isJustCompleted) {
+      return "marked";
+    } else if (this.state.thresholdReached && !this.state.isJustCompleted) {
+      return "complete";
+    } else {
+      return "incomplete";
+    }
   }
 
   itemStyles() {
@@ -139,7 +151,7 @@ class Habit extends PureComponent {
         >
           <HabitIconContent
             size={this.props.size}
-            marked={this.state.thresholdReached}
+            status={this.getStatus()}
             name={this.props.name}
           />
           <div className={styles.progressContainer}>

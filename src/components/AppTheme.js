@@ -6,7 +6,6 @@ class AppTheme extends PureComponent {
   };
 
   componentDidMount() {
-    console.log("AppTheme mounted", this.props.backgroundColor);
     document.body.style.backgroundColor = "#FD7152";
   }
 
