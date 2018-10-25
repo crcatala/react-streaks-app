@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import "./HabitHoldProgress.scss";
+import "./HoldActionProgress.scss";
 
-class HabitHoldProgress extends PureComponent {
+class HoldActionProgress extends PureComponent {
   constructor(props) {
     super(props);
     this.outerRadius = 60;
@@ -18,7 +18,7 @@ class HabitHoldProgress extends PureComponent {
 
   render() {
     return (
-      <div className="HabitHoldProgress">
+      <div className="HoldActionProgress">
         <svg
           className="progress"
           width={this.props.size}
@@ -48,4 +48,4 @@ class HabitHoldProgress extends PureComponent {
   }
 }
 
-export default HabitHoldProgress;
+export default HoldActionProgress;

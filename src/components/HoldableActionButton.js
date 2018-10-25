@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import styles from "./HoldableActionButton.module.scss";
-import HabitHoldProgress from "./HabitHoldProgress";
+import HoldActionProgress from "./HoldActionProgress";
 import { Power1, TimelineMax } from "gsap/src/uncompressed/TweenMax";
 
 const FRAMES_PER_SECOND = 60;
@@ -38,13 +38,11 @@ class HoldableActionButton extends PureComponent {
   }
 
   timer = () => {
-    // console.log("animation frame", this.state.counter);
     if (this.state.counter < this.pressHoldDurationInFrames()) {
       this.setState({ timerId: requestAnimationFrame(this.timer) });
       this.setState(state => ({ counter: state.counter + 1 }));
     } else {
       this.setState({ thresholdReached: true });
-      // console.log("Press threshold reached!");
     }
   };
 
@@ -55,7 +53,6 @@ class HoldableActionButton extends PureComponent {
     if (this.state.thresholdReached) {
       return;
     }
-    // this.tl.play();
     this.tl.play();
     requestAnimationFrame(this.timer);
   };
@@ -190,7 +187,7 @@ class HoldableActionButton extends PureComponent {
             {this.getContentFragment()}
           </div>
           <div className={styles.progressContainer}>
-            <HabitHoldProgress size={this.props.size} ref={this.progressRef} />
+            <HoldActionProgress size={this.props.size} ref={this.progressRef} />
           </div>
         </div>
         <div className={styles.titleSlot} style={this.titleStyles()}>

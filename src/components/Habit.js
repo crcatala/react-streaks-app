@@ -4,13 +4,8 @@ import HoldableActionButton from "./HoldableActionButton";
 import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 
 class Habit extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   static defaultProps = {
     name: "",
-    // pressHoldDurationInSeconds: 0.75,
     size: 200,
     primaryColor: "#fefefe",
     secondaryColor: "#582E27"
@@ -36,11 +31,18 @@ class Habit extends PureComponent {
   render() {
     return (
       <HoldableActionButton
-        titleSlot={<div>{this.props.name}</div>}
-        incompleteSlot={<div>{this.abbreviation()}</div>}
-        completeSlot={
+        titleSlot={<div className={styles.title}>{this.props.name}</div>}
+        incompleteSlot={
+          <div className={styles.content}>{this.abbreviation()}</div>
+        }
+        markedSlot={
           <Checkmark className={styles.checkmark} style={this.iconStyles()} />
         }
+        completeSlot={
+          <div className={styles.content}>{this.abbreviation()}</div>
+        }
+        primaryColor={this.props.primaryColor}
+        secondaryColor={this.props.secondaryColor}
       />
     );
   }
