@@ -1,0 +1,66 @@
+@import "../styles/variables.scss";
+
+.itemContainer {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.item {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  cursor: pointer;
+
+  &--completed {
+    background-color: $color-text;
+    color: $color-black;
+  }
+}
+
+.label {
+  position: absolute;
+  color: $color-text;
+  font-size: 96px;
+}
+
+.progressContainer {
+  position: absolute;
+}
+
+.checkmark {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  fill: $color-text;
+}
+
+.titleSlot {
+  display: flex;
+  justify-content: center;
+  // margin-top: 10px;
+}
+
+.content {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+
+.incompleteSlot {
+  //
+}
+
+.markedSlot {
+  //
+}
+
+.completeSlot {
+  //
+}

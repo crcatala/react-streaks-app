@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import HabitList from "../components/HabitList";
+import HoldableActionButton from "../components/HoldableActionButton";
 import AppTheme from "../components/AppTheme";
 
 class App extends Component {
@@ -18,6 +19,8 @@ class App extends Component {
     return (
       <div className="App">
         <HabitList list={this.state.habits} />
+        <HoldableActionButton titleSlot={<div>Title</div>} />
+        <HoldableActionButton />
         <AppTheme />
       </div>
     );
