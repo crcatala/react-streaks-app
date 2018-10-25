@@ -1,8 +1,7 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  // width: 450px;
-  // width: 100%;
+  max-width: 375px;
   justify-content: space-between;
   padding: 16px;
 }
