@@ -1,24 +1,32 @@
 @import "../styles/variables.scss";
 
+.itemContainer {
+  position: relative;
+}
+
 .item {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
   height: 200px;
-  border: 1px solid red;
   border-radius: 100%;
   cursor: pointer;
 }
 
 .label {
-  // width: 100px;
-  // height: 100px;
+  position: absolute;
   color: $color-text;
   font-size: 96px;
 }
 
+.progressContainer {
+  position: absolute;
+}
+
 .checkmark {
+  position: absolute;
   width: 100px;
   height: 100px;
   fill: $color-text;

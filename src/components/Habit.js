@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import styles from "./Habit.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
@@ -23,7 +22,7 @@ class Habit extends PureComponent {
 
   static defaultProps = {
     pressHoldDurationInSeconds: 0.75,
-    size: 100
+    size: 200
   };
 
   // TODO memoize or use mobx computed
@@ -149,9 +148,8 @@ class Habit extends PureComponent {
   render() {
     return (
       <div className="Habit">
-        <HabitHoldProgress size={200} />
         <div
-          className={styles.item}
+          className={styles.itemContainer}
           style={this.itemStyles()}
           onMouseDown={this.pressingDown}
           onMouseUp={this.notPressingDown}
@@ -160,16 +158,21 @@ class Habit extends PureComponent {
           onTouchEnd={this.notPressingDown}
           tabIndex="0"
         >
-          {this.state.thresholdReached ? (
-            <Checkmark
-              className={styles.checkmark}
-              style={this.labelStyles()}
-            />
-          ) : (
-            <div className={styles.label} style={this.iconStyles()}>
-              {this.props.name[0].toUpperCase()}
-            </div>
-          )}
+          <div className={styles.item} style={this.itemStyles()}>
+            {this.state.thresholdReached ? (
+              <Checkmark
+                className={styles.checkmark}
+                style={this.labelStyles()}
+              />
+            ) : (
+              <div className={styles.label} style={this.iconStyles()}>
+                {this.props.name[0].toUpperCase()}
+              </div>
+            )}
+          </div>
+          <div className={styles.progressContainer}>
+            <HabitHoldProgress size={this.props.size} />
+          </div>
         </div>
         <div className={styles.name}>
           {this.props.name}
