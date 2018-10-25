@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import styles from "./Habit.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
 import { Power1, TimelineMax } from "gsap/TweenMax";
+import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 
 const FRAMES_PER_SECOND = 60;
 
@@ -131,11 +132,18 @@ class Habit extends PureComponent {
           onTouchStart={this.pressingDown}
           onTouchEnd={this.notPressingDown}
         >
-          Circle
+          {this.state.thresholdReached ? (
+            <Checkmark className={styles.checkmark} />
+          ) : (
+            <div className={styles.label}>
+              {this.props.name[0].toUpperCase()}
+            </div>
+          )}
         </div>
         <div className={styles.name}>
           {this.props.name}
           {this.state.thresholdReached ? "Done" : ""}
+          {/* {this.state.thresholdReached ? <Checkmark /> : ""} */}
         </div>
         <div>isHolding: {`${this.state.isHolding}`}</div>
       </div>

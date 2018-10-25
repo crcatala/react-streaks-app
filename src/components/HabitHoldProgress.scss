@@ -1,17 +1,16 @@
+@import "../styles/variables.scss";
+
 .progress {
   transform: rotate(-90deg);
-}
 
-.progress__meter,
-.progress__value {
-  fill: none;
-}
+  &__meter {
+    fill: none;
+    stroke: $color-black;
+    opacity: 0.7;
+  }
 
-.progress__meter {
-  stroke: #e6e6e6;
-}
-
-.progress__value {
-  stroke: #f77a52;
-  stroke-linecap: round;
+  &__value {
+    fill: none;
+    stroke: $color-white;
+  }
 }

@@ -1,8 +1,26 @@
+@import "../styles/variables.scss";
+
 .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 200px;
   height: 200px;
   border: 1px solid red;
   border-radius: 100%;
+}
+
+.label {
+  // width: 100px;
+  // height: 100px;
+  color: $color-text;
+  font-size: 96px;
+}
+
+.checkmark {
+  width: 100px;
+  height: 100px;
+  fill: $color-text;
 }
 
 .name {

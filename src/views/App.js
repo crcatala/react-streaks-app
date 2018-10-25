@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import HabitList from "../components/HabitList";
+import AppTheme from "../components/AppTheme";
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends Component {
       <div className="App">
         <div>Hello</div>
         <HabitList list={this.state.habits} />
+        <AppTheme />
       </div>
     );
   }
