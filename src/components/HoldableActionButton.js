@@ -24,12 +24,14 @@ class HoldableActionButton extends PureComponent {
   }
 
   static defaultProps = {
+    size: 200,
+    primaryColor: "#fefefe",
+    secondaryColor: "#582E27",
     pressHoldDurationInSeconds: 0.75,
     titleSlot: <span>Default Title</span>,
     markedSlot: <span>Just Completed</span>,
     completeSlot: <span>Completed</span>,
-    incompleteSlot: <span>Incomplete</span>,
-    size: 200
+    incompleteSlot: <span>Incomplete</span>
   };
 
   // TODO memoize or use mobx computed
@@ -117,7 +119,23 @@ class HoldableActionButton extends PureComponent {
   itemStyles() {
     return {
       width: this.props.size,
-      height: this.props.size
+      height: this.props.size,
+      background:
+        this.getStatus() === "incomplete" ? "none" : this.props.primaryColor
+    };
+  }
+
+  contentStyles() {
+    return {
+      width: this.props.size,
+      height: this.props.size,
+      color: this.props.secondaryColor
+    };
+  }
+
+  titleStyles() {
+    return {
+      color: this.props.secondaryColor
     };
   }
 
@@ -170,6 +188,7 @@ class HoldableActionButton extends PureComponent {
     return (
       <div className="HoldableActionButton" style={this.widthStyles()}>
         <div
+          className={styles.itemContainer}
           style={this.itemStyles()}
           onMouseDown={this.pressingDown}
           onMouseUp={this.notPressingDown}
@@ -177,14 +196,16 @@ class HoldableActionButton extends PureComponent {
           onTouchStart={this.pressingDown}
           onTouchEnd={this.notPressingDown}
         >
-          <div className={styles.content} style={this.itemStyles()}>
+          <div className={styles.content} style={this.contentStyles()}>
             {this.getContentFragment()}
           </div>
           <div className={styles.progressContainer}>
             <HabitHoldProgress size={this.props.size} ref={this.progressRef} />
           </div>
         </div>
-        <div className={styles.titleSlot}>{this.props.titleSlot}</div>
+        <div className={styles.titleSlot} style={this.titleStyles()}>
+          {this.props.titleSlot}
+        </div>
       </div>
     );
   }

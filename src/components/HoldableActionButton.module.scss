@@ -4,6 +4,7 @@
   position: relative;
   cursor: pointer;
   user-select: none;
+  border-radius: 100%;
 }
 
 .item {
@@ -16,15 +17,15 @@
   border-radius: 100%;
   cursor: pointer;
 
-  &--completed {
-    background-color: $color-text;
-    color: $color-black;
-  }
+  // &--completed {
+  //   background-color: $color-text;
+  //   color: $color-black;
+  // }
 }
 
 .label {
   position: absolute;
-  color: $color-text;
+  // color: $color-text;
   font-size: 96px;
 }
 
@@ -36,7 +37,7 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  fill: $color-text;
+  // fill: $color-text;
 }
 
 .titleSlot {
