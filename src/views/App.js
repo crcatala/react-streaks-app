@@ -21,6 +21,7 @@ class App extends Component {
         <HabitList list={this.state.habits} />
         <HoldableActionButton titleSlot={<div>Title</div>} />
         <HoldableActionButton />
+        <HoldableActionButton size={100} />
         <AppTheme />
       </div>
     );

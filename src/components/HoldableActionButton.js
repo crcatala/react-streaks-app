@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import styles from "./HoldableActionButton.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
-import HabitIconContent from "./HabitIconContent";
-// import { Power1, TimelineMax } from "gsap/TweenMax";
 import { Power1, TimelineMax } from "gsap/src/uncompressed/TweenMax";
 
 const FRAMES_PER_SECOND = 60;
