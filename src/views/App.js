@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import HabitList from "../components/HabitList";
-import HoldableActionButton from "../components/HoldableActionButton";
 import AppTheme from "../components/AppTheme";
 
 class App extends Component {
@@ -10,7 +9,9 @@ class App extends Component {
       habits: [
         { id: 1, name: "Gratitude" },
         { id: 2, name: "Meditate" },
-        { id: 3, name: "Vision Board" }
+        { id: 3, name: "Vision Board" },
+        { id: 4, name: "Brew Coffee" },
+        { id: 5, name: "Walk" }
       ]
     };
   }
@@ -19,9 +20,6 @@ class App extends Component {
     return (
       <div className="App">
         <HabitList list={this.state.habits} />
-        <HoldableActionButton titleSlot={<div>Title</div>} />
-        <HoldableActionButton />
-        <HoldableActionButton size={100} />
         <AppTheme />
       </div>
     );

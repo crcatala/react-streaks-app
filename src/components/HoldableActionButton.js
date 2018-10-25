@@ -58,6 +58,7 @@ class HoldableActionButton extends PureComponent {
   };
 
   notPressingDown = e => {
+    e.preventDefault();
     this.setState({
       isHolding: false
     });

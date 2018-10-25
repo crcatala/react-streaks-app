@@ -6,7 +6,7 @@ import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 class Habit extends PureComponent {
   static defaultProps = {
     name: "",
-    size: 200,
+    size: 150,
     primaryColor: "#fefefe",
     secondaryColor: "#582E27"
   };
@@ -41,6 +41,7 @@ class Habit extends PureComponent {
         completeSlot={
           <div className={styles.content}>{this.abbreviation()}</div>
         }
+        size={this.props.size}
         primaryColor={this.props.primaryColor}
         secondaryColor={this.props.secondaryColor}
       />
