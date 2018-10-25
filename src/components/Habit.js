@@ -4,6 +4,8 @@ import styles from "./Habit.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
 import { Power1, TimelineMax } from "gsap/TweenMax";
 
+const FRAMES_PER_SECOND = 60;
+
 class Habit extends PureComponent {
   constructor(props) {
     super(props);
@@ -11,71 +13,106 @@ class Habit extends PureComponent {
       timerId: null,
       counter: 0,
       holdTime: 0,
+      marked: false,
+      isHolding: false,
       thresholdReached: false
     };
     this.tl = new TimelineMax();
   }
 
   static defaultProps = {
-    // Unit is frames, and is at 60fps. So his is then 1 second
-    pressHoldDuration: 60
+    pressHoldDurationInSeconds: 0.75
   };
 
-  timer = () => {
-    console.log("Timer tick!");
+  // TODO memoize or use mobx computed
+  pressHoldDurationInFrames() {
+    return this.props.pressHoldDurationInSeconds * FRAMES_PER_SECOND;
+  }
 
-    if (this.state.counter < this.props.pressHoldDuration) {
-      this.setState({
-        timerId: requestAnimationFrame(this.timer)
-      });
-      this.setState(state => ({
-        counter: state.counter + 1
-      }));
+  timer = () => {
+    console.log("animation frame", this.state.counter);
+    if (this.state.counter < this.pressHoldDurationInFrames()) {
+      this.setState({ timerId: requestAnimationFrame(this.timer) });
+      this.setState(state => ({ counter: state.counter + 1 }));
     } else {
-      this.setState({
-        thresholdReached: true
-      });
+      this.setState({ thresholdReached: true });
       console.log("Press threshold reached!");
     }
   };
 
   pressingDown = e => {
     e.preventDefault();
+    this.setState({ isHolding: true });
+
     if (this.state.thresholdReached) {
       return;
     }
-    this.startHoldAnimation();
+    this.tl.play();
     requestAnimationFrame(this.timer);
   };
 
   notPressingDown = e => {
-    console.log("cancelling");
-    this.tl.pause();
-    cancelAnimationFrame(this.state.timerId);
     this.setState({
-      counter: 0
+      isHolding: false
     });
+    if (this.state.thresholdReached) {
+      return;
+    } else {
+      // this.tl.kill();
+      this.tl.reverse();
+      cancelAnimationFrame(this.state.timerId);
+      this.setState({
+        counter: 0
+      });
+    }
   };
 
-  startHoldAnimation() {
-    this.tl.add("holdProgress", 0);
+  setupAnimation() {
+    this.tl.add("markedProgress", 0);
     this.tl.to(
       ".progress__value",
-      1,
+      this.props.pressHoldDurationInSeconds,
       {
         strokeDashoffset: "0",
         ease: Power1.easeOut,
         onComplete: () => {
           console.log("callback direct");
+          this.setState({
+            thresholdReached: true
+          });
         }
       },
-      "holdProgress"
+      "markedProgress"
     );
+    this.tl.pause();
   }
+
+  // startAnimationForUnmarked() {
+  //   this.tl.add("unmarkedProgress", 0);
+  //   this.tl.to(
+  //     ".progress__value",
+  //     this.props.pressHoldDurationInSeconds,
+  //     {
+  //       strokeDashoffset: "0",
+  //       ease: Power1.easeOut,
+  //       onComplete: () => {
+  //         console.log("callback direct");
+  //         this.setState({
+  //           thresholdReached: true
+  //         });
+  //       }
+  //     },
+  //     "unmarkedProgress"
+  //   );
+  // }
 
   // componentDidMount() {
 
   // }
+
+  componentDidMount() {
+    this.setupAnimation();
+  }
 
   componentWillUnmount() {
     this.tl.kill();
@@ -96,7 +133,11 @@ class Habit extends PureComponent {
         >
           Circle
         </div>
-        <div className={styles.name}>{this.props.name}</div>
+        <div className={styles.name}>
+          {this.props.name}
+          {this.state.thresholdReached ? "Done" : ""}
+        </div>
+        <div>isHolding: {`${this.state.isHolding}`}</div>
       </div>
     );
   }
