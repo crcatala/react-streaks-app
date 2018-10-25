@@ -14,7 +14,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Hello</div>
         <HabitList list={this.state.habits} />
         <AppTheme />
       </div>

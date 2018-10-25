@@ -1,10 +1,15 @@
 import React from "react";
 import "./HabitHoldProgress.scss";
 
-const HabitHoldProgress = () => {
+const HabitHoldProgress = ({ size = 100 }) => {
   return (
     <div className="HabitHoldProgress">
-      <svg className="progress" width="120" height="120" viewBox="0 0 120 120">
+      <svg
+        className="progress"
+        width={size}
+        height={size}
+        viewBox="0 0 120 120"
+      >
         <circle
           className="progress__meter"
           cx="60"

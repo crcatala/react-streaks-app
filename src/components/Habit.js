@@ -22,7 +22,8 @@ class Habit extends PureComponent {
   }
 
   static defaultProps = {
-    pressHoldDurationInSeconds: 0.75
+    pressHoldDurationInSeconds: 0.75,
+    size: 100
   };
 
   // TODO memoize or use mobx computed
@@ -110,6 +111,31 @@ class Habit extends PureComponent {
   // componentDidMount() {
 
   // }
+  itemStyles() {
+    return {
+      width: this.props.size,
+      height: this.props.size
+    };
+  }
+
+  iconStyles() {
+    const scale = 0.5;
+    const size = scale * this.props.size;
+
+    return {
+      fontSize: size
+    };
+  }
+
+  labelStyles() {
+    const scale = 0.5;
+    const size = scale * this.props.size;
+
+    return {
+      width: size,
+      height: size
+    };
+  }
 
   componentDidMount() {
     this.setupAnimation();
@@ -123,19 +149,24 @@ class Habit extends PureComponent {
   render() {
     return (
       <div className="Habit">
-        <HabitHoldProgress />
+        <HabitHoldProgress size={200} />
         <div
           className={styles.item}
+          style={this.itemStyles()}
           onMouseDown={this.pressingDown}
           onMouseUp={this.notPressingDown}
           onMouseLeave={this.notPressingDown}
           onTouchStart={this.pressingDown}
           onTouchEnd={this.notPressingDown}
+          tabIndex="0"
         >
           {this.state.thresholdReached ? (
-            <Checkmark className={styles.checkmark} />
+            <Checkmark
+              className={styles.checkmark}
+              style={this.labelStyles()}
+            />
           ) : (
-            <div className={styles.label}>
+            <div className={styles.label} style={this.iconStyles()}>
               {this.props.name[0].toUpperCase()}
             </div>
           )}
