@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import HabitList from "../components/HabitList";
 import AppTheme from "../components/AppTheme";
 
