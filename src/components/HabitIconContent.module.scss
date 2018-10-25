@@ -13,9 +13,14 @@
   height: 200px;
   border-radius: 100%;
 
-  &--completed {
+  &--marked {
     background-color: $color-text;
-    color: $color-black;
+
+    .checkmark {
+      fill: $color-black;
+    }
+
+    // color: $color-black;
   }
 }
 

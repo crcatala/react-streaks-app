@@ -9,6 +9,11 @@ export default class HabitIconContent extends PureComponent {
     marked: false
   };
 
+  classes() {
+    console.log(this);
+    return `${styles.item} ${this.props.marked && styles["item--marked"]}`;
+  }
+
   itemStyles() {
     return {
       width: this.props.size,
@@ -43,7 +48,7 @@ export default class HabitIconContent extends PureComponent {
 
   render() {
     return (
-      <div className={styles.item} style={this.itemStyles()}>
+      <div className={this.classes()} style={this.itemStyles()}>
         {this.props.marked ? (
           <Checkmark className={styles.checkmark} style={this.iconStyles()} />
         ) : (
