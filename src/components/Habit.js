@@ -2,7 +2,8 @@ import React, { PureComponent } from "react";
 import styles from "./Habit.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
 import HabitIconContent from "./HabitIconContent";
-import { Power1, TimelineMax } from "gsap/TweenMax";
+// import { Power1, TimelineMax } from "gsap/TweenMax";
+import { Power1, TimelineMax } from "gsap/src/uncompressed/TweenMax";
 
 const FRAMES_PER_SECOND = 60;
 
@@ -33,13 +34,13 @@ class Habit extends PureComponent {
   }
 
   timer = () => {
-    console.log("animation frame", this.state.counter);
+    // console.log("animation frame", this.state.counter);
     if (this.state.counter < this.pressHoldDurationInFrames()) {
       this.setState({ timerId: requestAnimationFrame(this.timer) });
       this.setState(state => ({ counter: state.counter + 1 }));
     } else {
       this.setState({ thresholdReached: true });
-      console.log("Press threshold reached!");
+      // console.log("Press threshold reached!");
     }
   };
 
@@ -71,8 +72,8 @@ class Habit extends PureComponent {
   };
 
   setupAnimation() {
-    console.log(this.progressRef);
-    console.log(this.progressRef.current);
+    // console.log(this.progressRef);
+    // console.log(this.progressRef.current);
     const progressValueNode = this.progressRef.current.valueRef.current;
     this.tl.add("progress", 0);
     this.tl.to(
