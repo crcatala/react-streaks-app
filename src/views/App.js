@@ -7,7 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      habits: [{ id: 1, name: "sup" }]
+      habits: [
+        { id: 1, name: "Gratitude" },
+        { id: 2, name: "Meditate" },
+        { id: 3, name: "Vision Board" }
+      ]
     };
   }
 

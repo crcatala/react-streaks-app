@@ -3,7 +3,6 @@ import styles from "./Habit.module.scss";
 import HabitHoldProgress from "./HabitHoldProgress";
 import HabitIconContent from "./HabitIconContent";
 import { Power1, TimelineMax } from "gsap/TweenMax";
-import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 
 const FRAMES_PER_SECOND = 60;
 
@@ -20,6 +19,7 @@ class Habit extends PureComponent {
       thresholdReached: false
     };
     this.tl = new TimelineMax();
+    this.progressRef = React.createRef();
   }
 
   static defaultProps = {
@@ -50,6 +50,7 @@ class Habit extends PureComponent {
     if (this.state.thresholdReached) {
       return;
     }
+    // this.tl.play();
     this.tl.play();
     requestAnimationFrame(this.timer);
   };
@@ -61,7 +62,6 @@ class Habit extends PureComponent {
     if (this.state.thresholdReached) {
       return;
     } else {
-      // this.tl.kill();
       this.tl.reverse();
       cancelAnimationFrame(this.state.timerId);
       this.setState({
@@ -71,22 +71,24 @@ class Habit extends PureComponent {
   };
 
   setupAnimation() {
-    this.tl.add("markedProgress", 0);
+    console.log(this.progressRef);
+    console.log(this.progressRef.current);
+    const progressValueNode = this.progressRef.current.valueRef.current;
+    this.tl.add("progress", 0);
     this.tl.to(
-      ".progress__value",
+      progressValueNode,
       this.props.pressHoldDurationInSeconds,
       {
         strokeDashoffset: "0",
         ease: Power1.easeOut,
         onComplete: () => {
-          console.log("callback direct");
           this.setState({ thresholdReached: true, isJustCompleted: true });
           setTimeout(() => {
             this.setState({ isJustCompleted: false });
           }, 1000);
         }
       },
-      "markedProgress"
+      "progress"
     );
     this.tl.pause();
   }
@@ -155,7 +157,7 @@ class Habit extends PureComponent {
             name={this.props.name}
           />
           <div className={styles.progressContainer}>
-            <HabitHoldProgress size={this.props.size} />
+            <HabitHoldProgress size={this.props.size} ref={this.progressRef} />
           </div>
         </div>
         <div className={styles.name}>
