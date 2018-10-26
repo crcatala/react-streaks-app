@@ -1,0 +1,12 @@
+@import "../styles/variables.scss";
+
+$offset: 8px;
+
+.SettingsControls {
+  position: fixed;
+  bottom: $offset;
+  left: $offset;
+  background-color: $color-white;
+  padding: 8px;
+  border-radius: 4px;
+}
