@@ -1,11 +1,17 @@
 @import "../styles/variables.scss";
 
+.HoldableActionButton {
+  touch-action: none;
+  user-select: none;
+}
+
 .itemContainer {
   position: relative;
   cursor: pointer;
   user-select: none;
   border-radius: 100%;
   touch-action: none;
+  user-select: none;
 }
 
 .item {
@@ -17,16 +23,10 @@
   height: 200px;
   border-radius: 100%;
   cursor: pointer;
-
-  // &--completed {
-  //   background-color: $color-text;
-  //   color: $color-black;
-  // }
 }
 
 .label {
   position: absolute;
-  // color: $color-text;
   font-size: 96px;
 }
 
@@ -38,13 +38,11 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  // fill: $color-text;
 }
 
 .titleSlot {
   display: flex;
   justify-content: center;
-  // margin-top: 10px;
 }
 
 .content {
@@ -54,16 +52,4 @@
   align-items: center;
   text-align: center;
   border-radius: 100%;
-}
-
-.incompleteSlot {
-  //
-}
-
-.markedSlot {
-  //
-}
-
-.completeSlot {
-  //
 }

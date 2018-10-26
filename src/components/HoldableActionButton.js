@@ -174,7 +174,7 @@ class HoldableActionButton extends PureComponent {
 
   render() {
     return (
-      <div className="HoldableActionButton" style={this.widthStyles()}>
+      <div className={styles.HoldableActionButton} style={this.widthStyles()}>
         <div
           className={styles.itemContainer}
           style={this.itemStyles()}

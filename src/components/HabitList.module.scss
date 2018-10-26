@@ -1,12 +1,21 @@
 .list {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   max-width: 375px;
   justify-content: space-between;
   padding: 16px;
+
+  // https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid
+  &::after {
+    content: "";
+    flex: 1 0 34%;
+  }
 }
 
 .item {
-  // display: inline-block;
+  flex: 1 0 34%;
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
 }

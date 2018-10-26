@@ -6,7 +6,7 @@ import { ReactComponent as Checkmark } from "../assets/icons/Checkmark.svg";
 class Habit extends PureComponent {
   static defaultProps = {
     name: "",
-    size: 150,
+    size: 100,
     primaryColor: "#fefefe",
     secondaryColor: "#582E27"
   };
