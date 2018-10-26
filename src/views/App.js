@@ -3,9 +3,7 @@ import HabitList from "../components/HabitList";
 import AppTheme from "../components/AppTheme";
 import Navigation from "../components/Navigation";
 import SettingsControls from "../components/SettingsControls";
-import { Transition } from "react-transition-group";
-import { TweenMax } from "gsap/src/uncompressed/TweenMax";
-// import { TweenMax } from "gsap/all";
+import TransitionFromLeft from "../components/transitions/TransitionFromLeft";
 import ThemeControls from "../components/ThemeControls";
 import { rootStore } from "../store";
 import { observer } from "mobx-react";
@@ -14,7 +12,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      settingsVisible: false,
       habits: [
         { id: 1, name: "Gratitude" },
         { id: 2, name: "Meditate" },
@@ -27,13 +24,11 @@ class App extends Component {
 
   openSettings() {
     console.log("openSettings");
-    // rootStore.settingsControlsToggle();
-    this.setState({ settingsVisible: true });
+    rootStore.settingsControlsToggle();
   }
 
   closeSettings() {
-    // rootStore.settingsControlsToggle();
-    this.setState({ settingsVisible: false });
+    rootStore.settingsControlsToggle();
   }
 
   render() {
@@ -44,42 +39,9 @@ class App extends Component {
           <HabitList list={this.state.habits} />
         </div>
         <Navigation onSettingsClicked={this.openSettings.bind(this)} />
-        {/* {rootStore.settingsControlsVisible && (
-          <SettingsControls onClose={this.closeSettings} />
-        )} */}
-        <Transition
-          timeout={1000}
-          appear
-          mountOnEnter
-          unmountOnExit
-          enter
-          // in={rootStore.settingsControlsVisible}
-          in={this.state.settingsVisible}
-          onEntering={(node, isAppearing) => {
-            console.log("onEntering", node, isAppearing);
-            TweenMax.to(node, 0.5, {
-              x: 0,
-              autoAlpha: 1
-              // onComplete: done
-            });
-          }}
-          onExiting={(node, isAppearing) => {
-            TweenMax.to(node, 0.5, {
-              x: 100,
-              autoAlpha: 0
-              // onComplete: done
-            });
-          }}
-          // addEndListener={(node, done) => {
-          //   TweenMax.to(node, 0.5, {
-          //     x: rootStore.settingsControlsVisible ? 0 : 100,
-          //     autoAlpha: rootStore.settingsControlsVisible ? 1 : 0,
-          //     onComplete: done
-          //   });
-          // }}
-        >
+        <TransitionFromLeft in={rootStore.settingsControlsVisible}>
           <SettingsControls onClose={this.closeSettings.bind(this)} />
-        </Transition>
+        </TransitionFromLeft>
         {rootStore.themeControlsVisible && <ThemeControls />}
         <AppTheme />
       </div>
