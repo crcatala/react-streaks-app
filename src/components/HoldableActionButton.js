@@ -23,6 +23,7 @@ class HoldableActionButton extends PureComponent {
 
   static defaultProps = {
     size: 200,
+    disabled: false,
     primaryColor: "#fefefe",
     secondaryColor: "#582E27",
     pressHoldDurationInSeconds: 0.75,
@@ -48,6 +49,8 @@ class HoldableActionButton extends PureComponent {
 
   pressingDown = e => {
     e.preventDefault();
+    if (this.props.disabled) return;
+
     this.setState({ isHolding: true });
 
     if (this.state.thresholdReached) {
@@ -59,6 +62,8 @@ class HoldableActionButton extends PureComponent {
 
   notPressingDown = e => {
     e.preventDefault();
+    if (this.props.disabled) return;
+
     this.setState({
       isHolding: false
     });
@@ -174,7 +179,11 @@ class HoldableActionButton extends PureComponent {
 
   render() {
     return (
-      <div className={styles.HoldableActionButton} style={this.widthStyles()}>
+      <div
+        className={styles.HoldableActionButton}
+        style={this.widthStyles()}
+        disabled={this.props.disabled}
+      >
         <div
           className={styles.itemContainer}
           style={this.itemStyles()}

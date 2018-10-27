@@ -37,6 +37,7 @@ class Habit extends PureComponent {
     return (
       <div className={styles.Habit}>
         <HoldableActionButton
+          disabled={editing}
           titleSlot={<div className={styles.title}>{name}</div>}
           incompleteSlot={
             <div className={styles.content}>{this.abbreviation()}</div>
