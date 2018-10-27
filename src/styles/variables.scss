@@ -2,3 +2,40 @@ $color-white: #fefefe;
 $color-black: #111111;
 
 $color-text: $color-white;
+
+// Transitions
+$swift-ease-out-duration: 0.4s !default;
+$swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+/* stylelint-disable declaration-bang-space-before */
+$swift-ease-out: all $swift-ease-out-duration $swift-ease-out-timing-function !default;
+$swift-slide: 0.4s cubic-bezier(0.35, 0, 0.25, 1);
+
+// Shadows
+$shadow-umbra-opacity: 0.2 !default;
+$shadow-penumbra-opacity: 0.14 !default;
+$shadow-ambient-opacity: 0.12 !default;
+
+$shadow-2dp: 0 1px 5px rgba($color-black, $shadow-umbra-opacity),
+  0 2px 2px rgba($color-black, $shadow-penumbra-opacity),
+  0 3px 1px -2px rgba($color-black, $shadow-ambient-opacity) !default;
+
+$shadow-5dp: 0 3px 5px -1px rgba($color-black, $shadow-umbra-opacity),
+  0 5px 8px rgba($color-black, $shadow-penumbra-opacity),
+  0 1px 14px rgba($color-black, $shadow-ambient-opacity) !default;
+
+$shadow-8dp: 0 5px 5px -3px rgba($color-black, $shadow-umbra-opacity),
+  0 8px 10px 1px rgba($color-black, $shadow-penumbra-opacity),
+  0 3px 14px 2px rgba($color-black, $shadow-ambient-opacity) !default;
+
+$shadow-subtle: 0 1px 4px 0 rgba(0, 0, 0, 0.07);
+
+$shadow-medium: 0 0 2px rgba($color-black, 0.12),
+  0 2px 2px rgba($color-black, 0.2);
+
+$shadow-large-umbra-opacity: 0.2 !default;
+$shadow-large-penumbra-opacity: 0.14 !default;
+$shadow-large-ambient-opacity: 0.12 !default;
+
+$shadow-large: 0 8px 10px -5px rgba($color-black, $shadow-large-umbra-opacity),
+  0 16px 24px 2px rgba($color-black, $shadow-large-penumbra-opacity),
+  0 6px 30px 5px rgba($color-black, $shadow-large-ambient-opacity) !default;

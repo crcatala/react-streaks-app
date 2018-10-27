@@ -1,7 +1,13 @@
 @import "../styles/variables.scss";
 
 .ThemeControls {
-  position: fixed;
-  bottom: 0;
-  right: 0;
+  display: flex;
+}
+
+.item {
+  margin-right: 6px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }

@@ -1,0 +1,16 @@
+@import "../styles/variables.scss";
+
+.ThemeItem {
+  border-radius: 100%;
+  border: 3px solid $color-black;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition-property: opacity;
+  transition: $swift-ease-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
