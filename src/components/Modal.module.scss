@@ -1,0 +1,42 @@
+.Modal {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  position: fixed;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #000000;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dialog {
+  position: relative;
+  width: auto;
+  z-index: 1001;
+  max-width: 500px;
+  margin: 1.75rem auto;
+}
+
+.content {
+  background-color: #ffffff;
+  width: 100%;
+  // border-radius: 5px;
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
+  // width: 100%;
+  // pointer-events: auto;
+  // background-color: #fff;
+  // background-clip: padding-box;
+  // border: 1px solid rgba(0, 0, 0, 0.2);
+  // border-radius: 0.3rem;
+  // outline: 0;
+}

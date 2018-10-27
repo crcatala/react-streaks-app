@@ -31,6 +31,7 @@ class App extends Component {
           <SettingsControls onClose={this.closeSettings.bind(this)} />
         </TransitionFromLeft>
         <AppTheme />
+        <div id="modal-root" />
       </div>
     );
   }
