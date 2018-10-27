@@ -1,12 +1,13 @@
-import PropTypes from "prop-types";
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import Habit from "./Habit";
 import AddHabit from "./AddHabit";
 import Modal from "./Modal";
+import AddHabitForm from "./AddHabitForm";
 import styles from "./HabitList.module.scss";
+import { rootStore } from "../store";
 import { observer } from "mobx-react";
 
-class HabitList extends PureComponent {
+class HabitList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +32,16 @@ class HabitList extends PureComponent {
     });
   };
 
+  addHabit = value => {
+    rootStore.addHabit(value);
+    this.closeAddHabitModal();
+    rootStore.settingsControlsToggle();
+  };
+
+  shouldShowAddButton = () => {
+    return this.props.editing || this.props.list.length < 6;
+  };
+
   render() {
     const { list, editing } = this.props;
 
@@ -43,13 +54,15 @@ class HabitList extends PureComponent {
             </div>
           );
         })}
-        {editing ? (
+        {this.shouldShowAddButton() ? (
           <div className={styles.item}>
             <AddHabit onComplete={this.openAddHabitModal} />
           </div>
         ) : null}
         {this.state.addHabitModalOpen ? (
-          <Modal onClose={this.closeAddHabitModal}>Test content of modal</Modal>
+          <Modal onClose={this.closeAddHabitModal}>
+            <AddHabitForm onSubmit={this.addHabit} />
+          </Modal>
         ) : null}
       </div>
     );

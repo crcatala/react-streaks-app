@@ -29,6 +29,7 @@ class AddHabit extends PureComponent {
     return (
       <div className={styles.AddHabit}>
         <HoldableActionButton
+          resetOnComplete
           onComplete={this.props.onComplete}
           titleSlot={<div className={styles.title}>{name}</div>}
           incompleteSlot={

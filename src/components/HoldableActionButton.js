@@ -5,18 +5,22 @@ import { Power1, TimelineMax } from "gsap/src/uncompressed/TweenMax";
 
 const FRAMES_PER_SECOND = 60;
 
+const getInitialState = function() {
+  return {
+    timerId: null,
+    counter: 0,
+    holdTime: 0,
+    marked: false,
+    isHolding: false,
+    isJustCompleted: false,
+    thresholdReached: false
+  };
+};
+
 class HoldableActionButton extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      timerId: null,
-      counter: 0,
-      holdTime: 0,
-      marked: false,
-      isHolding: false,
-      isJustCompleted: false,
-      thresholdReached: false
-    };
+    this.state = getInitialState();
     this.tl = new TimelineMax();
     this.progressRef = React.createRef();
   }
@@ -28,6 +32,7 @@ class HoldableActionButton extends PureComponent {
     secondaryColor: "#582E27",
     pressHoldDurationInSeconds: 0.75,
     onComplete: function() {},
+    resetOnComplete: false,
     titleSlot: <span>Default Title</span>,
     incompleteSlot: <span>Incomplete</span>,
     markedSlot: <span>Just Completed</span>,
@@ -79,6 +84,12 @@ class HoldableActionButton extends PureComponent {
     }
   };
 
+  reset = () => {
+    this.setState({
+      ...getInitialState()
+    });
+  };
+
   setupAnimation() {
     const progressValueNode = this.progressRef.current.valueRef.current;
     this.tl.add("progress", 0);
@@ -90,6 +101,9 @@ class HoldableActionButton extends PureComponent {
         ease: Power1.easeOut,
         onComplete: () => {
           this.setState({ thresholdReached: true, isJustCompleted: true });
+          if (this.props.resetOnComplete) {
+            this.reset();
+          }
           this.props.onComplete();
           setTimeout(() => {
             this.setState({ isJustCompleted: false });
