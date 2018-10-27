@@ -27,6 +27,7 @@ class HoldableActionButton extends PureComponent {
     primaryColor: "#fefefe",
     secondaryColor: "#582E27",
     pressHoldDurationInSeconds: 0.75,
+    onComplete: function() {},
     titleSlot: <span>Default Title</span>,
     incompleteSlot: <span>Incomplete</span>,
     markedSlot: <span>Just Completed</span>,
@@ -89,6 +90,7 @@ class HoldableActionButton extends PureComponent {
         ease: Power1.easeOut,
         onComplete: () => {
           this.setState({ thresholdReached: true, isJustCompleted: true });
+          this.props.onComplete();
           setTimeout(() => {
             this.setState({ isJustCompleted: false });
           }, 1000);

@@ -1,21 +1,22 @@
-import { observable, computed, action, decorate } from "mobx";
+import { observable, action, decorate } from "mobx";
 
 class RootStore {
   settingsControlsVisible = false;
-  themeControlsVisible = false;
-
-  // get elapsedTime() {
-  //   return this.current - this.start + "milliseconds";
-  // }
+  habits = [
+    { id: 1, name: "Gratitude" },
+    { id: 2, name: "Meditate" },
+    { id: 3, name: "Vision Board" },
+    { id: 4, name: "Brew Coffee" },
+    { id: 5, name: "Walk" }
+  ];
 
   settingsControlsToggle() {
-    console.log("settingsControlsToggle");
     this.settingsControlsVisible = !this.settingsControlsVisible;
   }
 }
 decorate(RootStore, {
   settingsControlsVisible: observable,
-  themeControlsVisible: observable,
+  habits: observable,
   settingsControlsToggle: action
 });
 

@@ -1,34 +1,52 @@
 import React, { PureComponent } from "react";
-import styles from "./Habit.module.scss";
-import HabitHoldProgress from "./HabitHoldProgress";
-import HabitIconContent from "./HabitIconContent";
-// import { Power1, TimelineMax } from "gsap/TweenMax";
-import { Power1, TimelineMax } from "gsap/src/uncompressed/TweenMax";
+import styles from "./AddHabit.module.scss";
+import HoldableActionButton from "./HoldableActionButton";
+import { ReactComponent as Plus } from "../assets/icons/Plus.svg";
 
-const FRAMES_PER_SECOND = 60;
-
-class Habit extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timerId: null,
-      counter: 0,
-      holdTime: 0,
-      marked: false,
-      isHolding: false,
-      isJustCompleted: false,
-      thresholdReached: false
-    };
-    this.tl = new TimelineMax();
-    this.progressRef = React.createRef();
-  }
-
+class AddHabit extends PureComponent {
   static defaultProps = {
-    pressHoldDurationInSeconds: 0.75,
-    size: 200
+    name: "Add Habit",
+    size: 100,
+    onComplete: function() {},
+    primaryColor: "#fefefe",
+    secondaryColor: "#582E27"
   };
 
+  iconStyles() {
+    const scale = 0.5;
+    const size = scale * this.props.size;
+
+    return {
+      width: size,
+      height: size,
+      fill: this.props.secondaryColor
+    };
+  }
+
   render() {
-    return <div>sup</div>;
+    const { name, size, primaryColor, secondaryColor } = this.props;
+
+    return (
+      <div className={styles.AddHabit}>
+        <HoldableActionButton
+          onComplete={this.props.onComplete}
+          titleSlot={<div className={styles.title}>{name}</div>}
+          incompleteSlot={
+            <Plus className={styles.checkmark} style={this.iconStyles()} />
+          }
+          markedSlot={
+            <Plus className={styles.checkmark} style={this.iconStyles()} />
+          }
+          completeSlot={
+            <Plus className={styles.checkmark} style={this.iconStyles()} />
+          }
+          size={size}
+          primaryColor={primaryColor}
+          secondaryColor={secondaryColor}
+        />
+      </div>
+    );
   }
 }
+
+export default AddHabit;

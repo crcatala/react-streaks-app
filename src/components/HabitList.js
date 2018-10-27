@@ -1,20 +1,28 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Habit from "./Habit";
+import AddHabit from "./AddHabit";
 import styles from "./HabitList.module.scss";
-import { rootStore } from "../store";
 import { observer } from "mobx-react";
 
-const HabitList = ({ list = [] }) => {
+function addHabitPrompt() {
+  console.log("addHabitPrompt");
+}
+const HabitList = ({ list = [], editing = false }) => {
   return (
     <div className={styles.list}>
       {list.map(x => {
         return (
           <div className={styles.item} key={x.id}>
-            <Habit name={x.name} editing={rootStore.settingsControlsVisible} />
+            <Habit name={x.name} editing={editing} />
           </div>
         );
       })}
+      {editing ? (
+        <div className={styles.item}>
+          <AddHabit onComplete={addHabitPrompt} />
+        </div>
+      ) : null}
     </div>
   );
 };
