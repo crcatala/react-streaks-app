@@ -34,7 +34,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div onClick={this.openSettings}>testttinnggggg</div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <HabitList list={this.state.habits} />
         </div>

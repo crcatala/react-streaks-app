@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import styles from "./Navigation.module.scss";
-// import { rootStore } from "../store";
+import { ReactComponent as Settings } from "../assets/icons/Settings.svg";
 
 export default class Navigation extends PureComponent {
   settingsClicked() {
@@ -12,9 +12,10 @@ export default class Navigation extends PureComponent {
   render() {
     return (
       <div className={styles.Navigation}>
-        <div onClick={this.settingsClicked.bind(this)}>Settings</div>
-        <div>TimeOfDayToggle</div>
-        <div>Stats</div>
+        <Settings
+          onClick={this.settingsClicked.bind(this)}
+          className={styles.settings}
+        />
       </div>
     );
   }

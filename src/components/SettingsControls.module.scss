@@ -7,15 +7,15 @@ $offset: 8px;
   bottom: $offset;
   left: $offset;
   background-color: $color-white;
-  padding: 8px;
+  padding: 8px 12px;
   border-radius: 4px;
   display: flex;
   align-items: center;
-  // flex-direction: column;
 }
 
 .close {
   width: 16px;
   height: 16px;
+  margin-right: 6px;
   cursor: pointer;
 }

@@ -1,9 +1,16 @@
+@import "../styles/variables.scss";
+
 .Navigation {
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 24px;
+  padding: 18px;
   box-sizing: border-box;
+}
+
+.settings {
+  fill: $color-white;
+  cursor: pointer;
 }
