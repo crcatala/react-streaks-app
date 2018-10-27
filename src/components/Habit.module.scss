@@ -1,5 +1,9 @@
 @import "../styles/variables.scss";
 
+.Habit {
+  position: relative;
+}
+
 .content {
   font-size: 64px;
 }
@@ -8,4 +12,30 @@
   font-size: 16px;
   margin-top: 12px;
   text-align: center;
+}
+
+.editing {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background-color: $color-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  box-shadow: $shadow-2dp;
+  transition-property: box-shadow;
+  transition: $swift-ease-out;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $shadow-5dp;
+  }
+}
+
+.editingIcon {
+  width: 24px;
+  height: 24px;
 }

@@ -41,7 +41,6 @@ class App extends Component {
         <TransitionFromLeft in={rootStore.settingsControlsVisible}>
           <SettingsControls onClose={this.closeSettings.bind(this)} />
         </TransitionFromLeft>
-        {rootStore.themeControlsVisible && <ThemeControls />}
         <AppTheme />
       </div>
     );

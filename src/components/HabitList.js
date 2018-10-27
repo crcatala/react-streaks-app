@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import Habit from "./Habit";
 import styles from "./HabitList.module.scss";
+import { rootStore } from "../store";
+import { observer } from "mobx-react";
 
 const HabitList = ({ list = [] }) => {
   return (
@@ -9,7 +11,7 @@ const HabitList = ({ list = [] }) => {
       {list.map(x => {
         return (
           <div className={styles.item} key={x.id}>
-            <Habit name={x.name} />
+            <Habit name={x.name} editing={rootStore.settingsControlsVisible} />
           </div>
         );
       })}
@@ -21,4 +23,4 @@ HabitList.propTypes = {
   message: PropTypes.string
 };
 
-export default HabitList;
+export default observer(HabitList);
