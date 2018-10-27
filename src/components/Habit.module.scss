@@ -26,8 +26,7 @@
   align-items: center;
   border-radius: 100%;
   box-shadow: $shadow-2dp;
-  transition-property: box-shadow;
-  transition: $swift-ease-out;
+  transition: box-shadow 0.4s $swift-ease-out-timing-function;
   cursor: pointer;
 
   &:hover {
