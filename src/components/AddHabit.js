@@ -16,8 +16,7 @@ class AddHabit extends PureComponent {
 
     return {
       width: size,
-      height: size,
-      fill: this.props.secondaryColor
+      height: size
     };
   }
 

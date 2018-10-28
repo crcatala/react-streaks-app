@@ -48,9 +48,11 @@ class RootStore {
       selected: false,
       variables: {
         "--bg-primary": "#fd7152",
+        "--text-primary": "#fefefe",
         "--bg-secondary": "#fefefe",
-        "--text-primary": "#000000",
-        "--text-secondary": "#6f453c"
+        "--text-secondary": "#000000",
+        "--accent-primary": "#6f453c",
+        "--accent-secondary": "#fefefe"
       }
     },
     {
@@ -60,8 +62,10 @@ class RootStore {
       variables: {
         "--bg-primary": "#fefefe",
         "--bg-secondary": "#fd7152",
-        "--text-primary": "#fefefe",
-        "--text-secondary": "#C9C9C9"
+        "--text-primary": "#fd7152",
+        "--text-secondary": "#fefefe",
+        "--accent-primary": "#C9C9C9",
+        "--accent-secondary": "#fd7152"
       }
     },
     {
@@ -69,7 +73,7 @@ class RootStore {
       collection: "orange",
       selected: false,
       variables: {
-        "--bg-primary": "#fefefe",
+        "--bg-primary": "#000000",
         "--bg-secondary": "#fd7152",
         "--text-primary": "#fefefe",
         "--text-secondary": "#C9C9C9"

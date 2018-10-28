@@ -10,9 +10,10 @@
 
 .content {
   font-size: 64px;
+  color: var(--text-primary);
 
   &--completed {
-    color: var(--text-primary);
+    color: var(--text-secondary);
   }
 }
 
@@ -51,9 +52,9 @@
 .editingIcon {
   width: 24px;
   height: 24px;
-  fill: var(--text-primary);
+  fill: var(--text-secondary);
 }
 
 .checkmark {
-  fill: var(--text-primary);
+  fill: var(--text-secondary);
 }

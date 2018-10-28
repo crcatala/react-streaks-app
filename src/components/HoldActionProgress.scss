@@ -5,11 +5,11 @@
 
   &__meter {
     fill: none;
-    stroke: var(--text-secondary);
+    stroke: var(--accent-primary);
   }
 
   &__value {
     fill: none;
-    stroke: var(--bg-secondary);
+    stroke: var(--accent-secondary);
   }
 }

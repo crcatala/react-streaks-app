@@ -44,7 +44,9 @@ $shadow-large: 0 8px 10px -5px rgba($color-black, $shadow-large-umbra-opacity),
 // Ooof sass variables broke, need raw values
 :root {
   --bg-primary: #fd7152;
+  --text-primary: #fefefe;
   --bg-secondary: #fefefe;
-  --text-primary: #000000;
-  --text-secondary: #6f453c;
+  --text-secondary: #000000;
+  --accent-primary: #6f453c;
+  --accent-secondary: #fefefe;
 }
