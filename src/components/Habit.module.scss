@@ -10,9 +10,10 @@
 
 .content {
   font-size: 64px;
-}
-.content--completed {
-  color: var(--text-primary);
+
+  &--completed {
+    color: var(--text-primary);
+  }
 }
 
 .title {

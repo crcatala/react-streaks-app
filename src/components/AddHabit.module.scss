@@ -6,12 +6,22 @@
 
 .content {
   font-size: 64px;
+
+  &--completed {
+    color: var(--text-primary);
+  }
 }
 
 .title {
   font-size: 16px;
   margin-top: 12px;
   text-align: center;
+  color: var(--bg-secondary);
+  transition: color 1s $swift-ease-out-timing-function;
+
+  .title--completed {
+    color: var(--text-primary);
+  }
 }
 
 .editing {

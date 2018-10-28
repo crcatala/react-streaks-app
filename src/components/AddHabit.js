@@ -7,9 +7,7 @@ class AddHabit extends PureComponent {
   static defaultProps = {
     name: "Add Habit",
     size: 100,
-    onComplete: function() {},
-    primaryColor: "#fefefe",
-    secondaryColor: "#582E27"
+    onComplete: function() {}
   };
 
   iconStyles() {
@@ -24,7 +22,7 @@ class AddHabit extends PureComponent {
   }
 
   render() {
-    const { name, size, primaryColor, secondaryColor } = this.props;
+    const { name, size } = this.props;
 
     return (
       <div className={styles.AddHabit}>
@@ -42,8 +40,6 @@ class AddHabit extends PureComponent {
             <Plus className={styles.checkmark} style={this.iconStyles()} />
           }
           size={size}
-          primaryColor={primaryColor}
-          secondaryColor={secondaryColor}
         />
       </div>
     );
