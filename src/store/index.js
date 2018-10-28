@@ -80,6 +80,45 @@ class RootStore {
         "--accent-primary": "#4D4D4D",
         "--accent-secondary": "#fd7152"
       }
+    },
+    {
+      name: "green--standard",
+      collection: "green",
+      selected: false,
+      variables: {
+        "--bg-primary": "#C0D27F",
+        "--text-primary": "#fefefe",
+        "--bg-secondary": "#fefefe",
+        "--text-secondary": "#000000",
+        "--accent-primary": "#5D6349",
+        "--accent-secondary": "#fefefe"
+      }
+    },
+    {
+      name: "green--light",
+      collection: "green",
+      selected: false,
+      variables: {
+        "--bg-primary": "#fefefe",
+        "--bg-secondary": "#C0D27F",
+        "--text-primary": "#C0D27F",
+        "--text-secondary": "#fefefe",
+        "--accent-primary": "#C9C9C9",
+        "--accent-secondary": "#C0D27F"
+      }
+    },
+    {
+      name: "green--dark",
+      collection: "green",
+      selected: false,
+      variables: {
+        "--bg-primary": "#000000",
+        "--bg-secondary": "#C0D27F",
+        "--text-primary": "#fefefe",
+        "--text-secondary": "#fefefe",
+        "--accent-primary": "#4D4D4D",
+        "--accent-secondary": "#C0D27F"
+      }
     }
   ];
 
@@ -120,21 +159,35 @@ class RootStore {
     // TODO: computed
     const currentTheme = this.themes.find(x => x.selected);
     if (currentTheme) {
-      const currentThemeCollction = currentTheme.collection;
-      const themesHavingSameCollection = this.themes.filter(
-        x => x.collection === currentThemeCollction
+      console.log(
+        "collection, currentTheme.collection",
+        collection,
+        currentTheme.collection
       );
-      const indexOfCurrentTheme = themesHavingSameCollection.findIndex(
-        x => x.selected
-      );
-      console.log("indexOfCurrentTheme", indexOfCurrentTheme);
-      const indexOfNextTheme =
-        themesHavingSameCollection.length === indexOfCurrentTheme + 1
-          ? 0
-          : indexOfCurrentTheme + 1;
-      this.setTheme({
-        name: themesHavingSameCollection[indexOfNextTheme].name
-      });
+      if (currentTheme.collection === collection) {
+        const currentThemeCollection = currentTheme.collection;
+        const themesHavingSameCollection = this.themes.filter(
+          x => x.collection === currentThemeCollection
+        );
+        const indexOfCurrentTheme = themesHavingSameCollection.findIndex(
+          x => x.selected
+        );
+        console.log("indexOfCurrentTheme", indexOfCurrentTheme);
+        const indexOfNextTheme =
+          themesHavingSameCollection.length === indexOfCurrentTheme + 1
+            ? 0
+            : indexOfCurrentTheme + 1;
+        this.setTheme({
+          name: themesHavingSameCollection[indexOfNextTheme].name
+        });
+      } else {
+        const firstThemeHavingCollection = this.themes.find(
+          x => x.collection === collection
+        );
+        if (firstThemeHavingCollection) {
+          this.setTheme({ name: firstThemeHavingCollection.name });
+        }
+      }
     } else {
       this.setTheme({ name: this.themes[0].name });
     }
