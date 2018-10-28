@@ -76,7 +76,9 @@ class RootStore {
         "--bg-primary": "#000000",
         "--bg-secondary": "#fd7152",
         "--text-primary": "#fefefe",
-        "--text-secondary": "#C9C9C9"
+        "--text-secondary": "#fefefe",
+        "--accent-primary": "#4D4D4D",
+        "--accent-secondary": "#fd7152"
       }
     }
   ];
