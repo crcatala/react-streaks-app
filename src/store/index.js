@@ -136,16 +136,25 @@ class RootStore {
     if (theme) {
       if (theme.selected) return;
 
+      // TODO: optimize since this isn't batched like Vue (?)
       this.themes.forEach(x => {
-        // TODO: optimize since this isn't batched like Vue (?)
         x.selected = false;
       });
 
       theme.selected = true;
 
+      this.themeCollections.forEach(x => {
+        x.selected = false;
+      });
+
+      const themeCollection = this.themeCollections.find(
+        x => x.name === theme.collection
+      );
+      themeCollection.selected = true;
+      console.log("themeCollection", themeCollection);
+
       const themeMap = theme.variables;
       Object.keys(themeMap).forEach(x => {
-        console.log(x, themeMap[x]);
         const property = x;
         const value = themeMap[x];
         const root = document.documentElement;
@@ -155,15 +164,9 @@ class RootStore {
   }
 
   selectNextTheme({ collection = "orange" } = {}) {
-    console.log("selectNextTheme", collection);
     // TODO: computed
     const currentTheme = this.themes.find(x => x.selected);
     if (currentTheme) {
-      console.log(
-        "collection, currentTheme.collection",
-        collection,
-        currentTheme.collection
-      );
       if (currentTheme.collection === collection) {
         const currentThemeCollection = currentTheme.collection;
         const themesHavingSameCollection = this.themes.filter(
@@ -172,7 +175,6 @@ class RootStore {
         const indexOfCurrentTheme = themesHavingSameCollection.findIndex(
           x => x.selected
         );
-        console.log("indexOfCurrentTheme", indexOfCurrentTheme);
         const indexOfNextTheme =
           themesHavingSameCollection.length === indexOfCurrentTheme + 1
             ? 0
@@ -196,13 +198,14 @@ class RootStore {
 decorate(RootStore, {
   settingsControlsVisible: observable,
   habits: observable,
+  themes: observable,
+  themeCollections: observable,
   settingsControlsToggle: action,
   addHabit: action,
   setTheme: action
 });
 
 const rootStore = new RootStore();
-// rootStore.setTheme({ name: "orange--standard" });
 rootStore.selectNextTheme({ collection: "orange" });
 
 export { rootStore };

@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import styles from "./SettingsControls.module.scss";
 import { ReactComponent as Cross } from "../assets/icons/Cross.svg";
 import ThemeControls from "./ThemeControls";
 import { rootStore } from "../store";
 
-export default class SettingsControls extends PureComponent {
+class SettingsControls extends Component {
   static defaultProps = {
     themes: [] // { primaryColor, selected }
   };
@@ -30,3 +30,5 @@ export default class SettingsControls extends PureComponent {
     // setTheme(ORANGE_LIGHT_THEME);
   }
 }
+
+export default SettingsControls;

@@ -1,8 +1,9 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import styles from "./ThemeControls.module.scss";
 import ThemeItem from "./ThemItem";
+import { observer } from "mobx-react";
 
-export default class ThemeControls extends PureComponent {
+class ThemeControls extends Component {
   static defaultProps = {
     themes: [], // { primaryColor, selected }
     onSelect: function() {}
@@ -27,3 +28,5 @@ export default class ThemeControls extends PureComponent {
     );
   }
 }
+
+export default observer(ThemeControls);
