@@ -28,7 +28,10 @@ class App extends Component {
         </div>
         <Navigation onSettingsClicked={this.openSettings.bind(this)} />
         <TransitionFromLeft in={rootStore.settingsControlsVisible}>
-          <SettingsControls onClose={this.closeSettings.bind(this)} />
+          <SettingsControls
+            onClose={this.closeSettings.bind(this)}
+            themes={rootStore.themeCollections}
+          />
         </TransitionFromLeft>
         <AppTheme />
         <div id="modal-root" />

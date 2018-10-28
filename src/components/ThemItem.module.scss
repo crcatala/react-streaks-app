@@ -1,8 +1,11 @@
 @import "../styles/variables.scss";
 
 .ThemeItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 100%;
-  border: 3px solid var(--bg-primary);
+  border: 3px solid var(--text-primary);
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -13,4 +16,10 @@
   &:hover {
     opacity: 1;
   }
+}
+
+.selected {
+  width: 16px;
+  height: 16px;
+  fill: var(--bg-secondary);
 }

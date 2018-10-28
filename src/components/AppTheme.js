@@ -1,20 +1,17 @@
 import { PureComponent } from "react";
+// import { rootStore } from "../store";
 
-export function setTheme(themeMap = {}) {
-  Object.keys(themeMap).forEach(x => {
-    console.log(x, themeMap[x]);
-    const property = x;
-    const value = themeMap[x];
-    const root = document.documentElement;
-    root.style.setProperty(property, value);
-  });
-}
 class AppTheme extends PureComponent {
   static defaultProps = {
     backgroundColor: "#FD7152"
   };
 
+  compponentWillMount() {
+    // import AppTheme from "../components/AppTheme";
+    // rootStore.setDefaultTheme();
+  }
   componentDidMount() {
+    // setTheme();
     // document.body.style.backgroundColor = "#FD7152";
     // setTimeout(() => {
     //  const root = document.documentElement;
