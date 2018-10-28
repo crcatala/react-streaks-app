@@ -2,7 +2,7 @@
 
 .ThemeItem {
   border-radius: 100%;
-  border: 3px solid $color-black;
+  border: 3px solid var(--bg-primary);
   width: 24px;
   height: 24px;
   cursor: pointer;

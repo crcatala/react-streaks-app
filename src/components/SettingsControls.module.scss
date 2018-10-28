@@ -6,7 +6,7 @@ $offset: 8px;
   position: fixed;
   bottom: $offset;
   left: $offset;
-  background-color: $color-white;
+  background-color: var(--bg-secondary);
   padding: 8px 12px;
   border-radius: 4px;
   display: flex;
@@ -18,4 +18,5 @@ $offset: 8px;
   height: 16px;
   margin-right: 6px;
   cursor: pointer;
+  fill: var(--bg-primary);
 }
