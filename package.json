@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "gsap": "^2.0.2",
     "mobx": "^5.5.2",
     "mobx-react": "^5.3.5",

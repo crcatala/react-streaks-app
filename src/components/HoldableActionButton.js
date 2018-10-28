@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import styles from "./HoldableActionButton.module.scss";
+import classNames from "classnames";
 import HoldActionProgress from "./HoldActionProgress";
 import { Power1, TimelineMax } from "gsap/src/uncompressed/TweenMax";
 
@@ -28,10 +29,9 @@ class HoldableActionButton extends PureComponent {
   static defaultProps = {
     size: 200,
     disabled: false,
-    primaryColor: "#fefefe",
-    secondaryColor: "#582E27",
     pressHoldDurationInSeconds: 0.75,
     onComplete: function() {},
+    itemContainerClass: "doge",
     resetOnComplete: false,
     titleSlot: <span>Default Title</span>,
     incompleteSlot: <span>Incomplete</span>,
@@ -134,23 +134,14 @@ class HoldableActionButton extends PureComponent {
   itemStyles() {
     return {
       width: this.props.size,
-      height: this.props.size,
-      background:
-        this.getStatus() === "incomplete" ? "none" : this.props.primaryColor
+      height: this.props.size
     };
   }
 
   contentStyles() {
     return {
       width: this.props.size,
-      height: this.props.size,
-      color: this.props.secondaryColor
-    };
-  }
-
-  titleStyles() {
-    return {
-      color: this.props.secondaryColor
+      height: this.props.size
     };
   }
 
@@ -194,6 +185,10 @@ class HoldableActionButton extends PureComponent {
   }
 
   render() {
+    const itemContainerClass = classNames({
+      [styles.itemContainer]: true,
+      [this.props.itemContainerClass]: true
+    });
     return (
       <div
         className={styles.HoldableActionButton}
@@ -201,7 +196,7 @@ class HoldableActionButton extends PureComponent {
         disabled={this.props.disabled}
       >
         <div
-          className={styles.itemContainer}
+          className={itemContainerClass}
           style={this.itemStyles()}
           onMouseDown={this.pressingDown}
           onMouseUp={this.notPressingDown}
@@ -216,9 +211,7 @@ class HoldableActionButton extends PureComponent {
             <HoldActionProgress size={this.props.size} ref={this.progressRef} />
           </div>
         </div>
-        <div className={styles.titleSlot} style={this.titleStyles()}>
-          {this.props.titleSlot}
-        </div>
+        <div className={styles.titleSlot}>{this.props.titleSlot}</div>
       </div>
     );
   }

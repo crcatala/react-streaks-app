@@ -39,3 +39,12 @@ $shadow-large-ambient-opacity: 0.12 !default;
 $shadow-large: 0 8px 10px -5px rgba($color-black, $shadow-large-umbra-opacity),
   0 16px 24px 2px rgba($color-black, $shadow-large-penumbra-opacity),
   0 6px 30px 5px rgba($color-black, $shadow-large-ambient-opacity) !default;
+
+// CSS Variables
+// Ooof sass variables broke, need raw values
+:root {
+  --bg-primary: #fd7152;
+  --bg-secondary: #fefefe;
+  --text-primary: #000000;
+  --text-secondary: #6f453c;
+}

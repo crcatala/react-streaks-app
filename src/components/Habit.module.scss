@@ -4,14 +4,27 @@
   position: relative;
 }
 
+.completed {
+  background-color: var(--bg-secondary);
+}
+
 .content {
   font-size: 64px;
+}
+.content--completed {
+  color: var(--text-primary);
 }
 
 .title {
   font-size: 16px;
   margin-top: 12px;
   text-align: center;
+  color: var(--bg-secondary);
+  transition: color 1s $swift-ease-out-timing-function;
+
+  .title--completed {
+    color: var(--text-primary);
+  }
 }
 
 .editing {
@@ -37,4 +50,8 @@
 .editingIcon {
   width: 24px;
   height: 24px;
+}
+
+.checkmark {
+  fill: var(--text-primary);
 }

@@ -1,5 +1,8 @@
 @import "../styles/variables.scss";
 
+//     primaryColor: "#fefefe",
+// secondaryColor: "#582E27",
+
 .HoldableActionButton {
   touch-action: none;
   user-select: none;
@@ -38,12 +41,6 @@
   position: absolute;
 }
 
-.checkmark {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-}
-
 .titleSlot {
   display: flex;
   justify-content: center;
@@ -56,4 +53,5 @@
   align-items: center;
   text-align: center;
   border-radius: 100%;
+  color: var(--bg-secondary);
 }
