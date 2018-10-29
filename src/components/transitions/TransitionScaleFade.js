@@ -3,7 +3,6 @@ import { Transition } from "react-transition-group";
 import { TweenMax } from "gsap/src/uncompressed/TweenMax";
 
 export default function TransitionScaleFade(props) {
-  const offset = 100;
   const durationInSeconds = 0.25;
 
   return (

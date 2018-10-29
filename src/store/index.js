@@ -1,11 +1,20 @@
-import { observable, action, decorate } from "mobx";
+import { observable, computed, action, decorate } from "mobx";
 import { themeCollections, themes } from "./themes";
+import get from "lodash/get";
 
 class RootStore {
   settingsControlsVisible = false;
   habits = [{ id: 1, name: "Walk Dog" }, { id: 2, name: "Brew Coffee" }];
   themeCollections = themeCollections;
   themes = themes;
+
+  get currentTheme() {
+    return this.themes.find(x => x.selected);
+  }
+
+  get currentThemeCollection() {
+    return get(this.currentTheme, "collection");
+  }
 
   settingsControlsToggle() {
     this.settingsControlsVisible = !this.settingsControlsVisible;
@@ -21,7 +30,6 @@ class RootStore {
     if (theme) {
       if (theme.selected) return;
 
-      // TODO: optimize since this isn't batched like Vue (?)
       this.themes.forEach(x => {
         x.selected = false;
       });
@@ -36,7 +44,6 @@ class RootStore {
         x => x.name === theme.collection
       );
       themeCollection.selected = true;
-      console.log("themeCollection", themeCollection);
 
       const themeMap = theme.variables;
       Object.keys(themeMap).forEach(x => {
@@ -48,32 +55,39 @@ class RootStore {
     }
   }
 
+  selectNextThemeWithinSameCollection({ collection } = {}) {
+    const themesHavingSameCollection = this.themes.filter(
+      x => x.collection === collection
+    );
+    const indexOfCurrentTheme = themesHavingSameCollection.findIndex(
+      x => x.selected
+    );
+    const indexOfNextTheme =
+      themesHavingSameCollection.length === indexOfCurrentTheme + 1
+        ? 0
+        : indexOfCurrentTheme + 1;
+    this.setTheme({
+      name: themesHavingSameCollection[indexOfNextTheme].name
+    });
+  }
+
+  selectFirstThemeInCollection({ collection } = {}) {
+    const firstThemeHavingCollection = this.themes.find(
+      x => x.collection === collection
+    );
+    if (firstThemeHavingCollection) {
+      this.setTheme({ name: firstThemeHavingCollection.name });
+    }
+  }
+
   selectNextTheme({ collection = "orange" } = {}) {
-    // TODO: computed
-    const currentTheme = this.themes.find(x => x.selected);
-    if (currentTheme) {
-      if (currentTheme.collection === collection) {
-        const currentThemeCollection = currentTheme.collection;
-        const themesHavingSameCollection = this.themes.filter(
-          x => x.collection === currentThemeCollection
-        );
-        const indexOfCurrentTheme = themesHavingSameCollection.findIndex(
-          x => x.selected
-        );
-        const indexOfNextTheme =
-          themesHavingSameCollection.length === indexOfCurrentTheme + 1
-            ? 0
-            : indexOfCurrentTheme + 1;
-        this.setTheme({
-          name: themesHavingSameCollection[indexOfNextTheme].name
+    if (this.currentTheme) {
+      if (this.currentTheme.collection === collection) {
+        this.selectNextThemeWithinSameCollection({
+          collection: this.currentThemeCollection
         });
       } else {
-        const firstThemeHavingCollection = this.themes.find(
-          x => x.collection === collection
-        );
-        if (firstThemeHavingCollection) {
-          this.setTheme({ name: firstThemeHavingCollection.name });
-        }
+        this.selectFirstThemeInCollection({ collection });
       }
     } else {
       this.setTheme({ name: this.themes[0].name });
@@ -86,6 +100,8 @@ decorate(RootStore, {
   habits: observable,
   themes: observable,
   themeCollections: observable,
+  currentTheme: computed,
+  currentThemeCollection: computed,
   settingsControlsToggle: action,
   addHabit: action,
   setTheme: action
