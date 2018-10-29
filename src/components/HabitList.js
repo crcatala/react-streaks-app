@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import styles from "./HabitList.module.scss";
 import Habit from "./Habit";
 import AddHabit from "./AddHabit";
 import Modal from "./Modal";
 import AddHabitForm from "./AddHabitForm";
-import styles from "./HabitList.module.scss";
 import { rootStore } from "../store";
 import { observer } from "mobx-react";
 
@@ -35,7 +35,6 @@ class HabitList extends Component {
   addHabit = value => {
     rootStore.addHabit(value);
     this.closeAddHabitModal();
-    rootStore.settingsControlsToggle();
   };
 
   shouldShowAddButton = () => {
@@ -59,11 +58,12 @@ class HabitList extends Component {
             <AddHabit onComplete={this.openAddHabitModal} />
           </div>
         ) : null}
-        {this.state.addHabitModalOpen ? (
-          <Modal onClose={this.closeAddHabitModal}>
-            <AddHabitForm onSubmit={this.addHabit} />
-          </Modal>
-        ) : null}
+        <Modal
+          visible={this.state.addHabitModalOpen}
+          onClose={this.closeAddHabitModal}
+        >
+          <AddHabitForm onSubmit={this.addHabit} />
+        </Modal>
       </div>
     );
   }

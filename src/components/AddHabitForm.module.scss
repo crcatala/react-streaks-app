@@ -6,11 +6,12 @@
   font-size: 2em;
   font-weight: 300;
   margin-bottom: 0.4em;
+  color: var(--text-secondary);
 }
 
 .addButton {
-  background-color: #5f2a1e;
-  color: #ffffff;
+  background-color: var(--accent-primary);
+  color: var(--accent-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 1.4em;

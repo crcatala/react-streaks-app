@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./App.module.scss";
 import HabitList from "../components/HabitList";
 import AppTheme from "../components/AppTheme";
 import Navigation from "../components/Navigation";
@@ -8,28 +9,27 @@ import { rootStore } from "../store";
 import { observer } from "mobx-react";
 
 class App extends Component {
-  openSettings() {
-    console.log("openSettings");
+  openSettings = () => {
     rootStore.settingsControlsToggle();
-  }
+  };
 
-  closeSettings() {
+  closeSettings = () => {
     rootStore.settingsControlsToggle();
-  }
+  };
 
   render() {
     return (
       <div className="App">
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className={styles.listWrapper}>
           <HabitList
             list={rootStore.habits}
             editing={rootStore.settingsControlsVisible}
           />
         </div>
-        <Navigation onSettingsClicked={this.openSettings.bind(this)} />
+        <Navigation onSettingsClicked={this.openSettings} />
         <TransitionFromLeft in={rootStore.settingsControlsVisible}>
           <SettingsControls
-            onClose={this.closeSettings.bind(this)}
+            onClose={this.closeSettings}
             themes={rootStore.themeCollections}
           />
         </TransitionFromLeft>
