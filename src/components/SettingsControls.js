@@ -1,16 +1,15 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import styles from "./SettingsControls.module.scss";
 import { ReactComponent as Cross } from "../assets/icons/Cross.svg";
 import ThemeControls from "./ThemeControls";
 import { rootStore } from "../store";
 
-class SettingsControls extends Component {
+class SettingsControls extends PureComponent {
   static defaultProps = {
     themes: [] // { primaryColor, selected }
   };
 
   onSelect = theme => {
-    console.log("onSelect", theme);
     rootStore.selectNextTheme({ collection: theme.name });
   };
 
@@ -23,11 +22,6 @@ class SettingsControls extends Component {
         <ThemeControls themes={themes} onSelect={this.onSelect} />
       </div>
     );
-  }
-
-  componentDidMount() {
-    // setTheme(ORANGE_THEME);
-    // setTheme(ORANGE_LIGHT_THEME);
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./ThemeControls.module.scss";
-import ThemeItem from "./ThemItem";
+import ThemeItem from "./ThemeItem";
 import { observer } from "mobx-react";
 
 class ThemeControls extends Component {

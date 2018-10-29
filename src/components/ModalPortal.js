@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import styles from "./ModalPortal.module.scss";
 
