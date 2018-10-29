@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styles from "./App.module.scss";
 import HabitList from "../components/HabitList";
-import AppTheme from "../components/AppTheme";
 import Navigation from "../components/Navigation";
 import SettingsControls from "../components/SettingsControls";
 import TransitionFromLeft from "../components/transitions/TransitionFromLeft";
@@ -33,7 +32,6 @@ class App extends Component {
             themes={rootStore.themeCollections}
           />
         </TransitionFromLeft>
-        <AppTheme />
         <div id="modal-root" />
       </div>
     );
